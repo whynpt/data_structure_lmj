@@ -1,4 +1,5 @@
 #include"vector.h"
+#include<iostream>
 typedef int Rank;
 
 template<typename T>
@@ -87,6 +88,12 @@ Rank vector<T>::search(T const e, Rank start, Rank end)
 }
 
 template<typename T>
+ostream vector<T>::operator << (vector<T> const& V)
+{
+	
+}
+
+template<typename T>
 void vector<T>::expand()
 {
 	T * newelem = new T[_capacity = _capacity * 2];
@@ -154,6 +161,13 @@ int vector<T>::remove(Rank start, Rank end)
 	return _size;
 }
 
+
+template<typename T>
+Rank vector<T>::remove(Rank r)
+{	
+	while ( r++ < _size)
+		_elem[r] = _elem[r + 1];
+}
 template<typename T>
 Rank vector<T>::insert(T const& e, Rank r)
 {
@@ -172,4 +186,17 @@ Rank vector<T>::insert(T const& e)
 	insert(e, _size);
 	return ++_size;
 
+}
+
+template<typename T>
+int vector<T>::deduplicate()
+{
+	for (int i = 0; i < _size; i++)
+		for(int j = 0; j < _size;j++ )
+		{
+			if (_elem[i] == _elem[j] && i != j)
+				remove(i);
+				_size--;
+		}
+	return _size;
 }
