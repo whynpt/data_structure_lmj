@@ -28,7 +28,7 @@ public:
 	Rank find(T const e, Rank start, Rank end); //无序向量区间查找，返回第一个相同元素的秩
 	Rank search(T const e); // 有序向量查找
 	Rank search(T const e, Rank start, Rank end);  // 有序向量区间查找，返回第一个相同元素的秩
-	ostream operator << (vector<T> const& V);  //重载<<，输出向量
+	//ostream& operator<<(ostream& out, const vector<T> &V);  //重载<<，输出向量
 	//可写访问接口
 	void TooLong(); //判断是否装填太小
 	void TooShort();  // 判断是否装填太大
@@ -40,6 +40,7 @@ public:
 	Rank insert(T const& e, Rank r); // 将元素e插入在r中
 	Rank insert(T const& e);  //将元素在末尾插入
 	int deduplicate(); // 无序去重
-	//int uniquify(); //有序去重
+	int uniquify(); //有序去重
+	void print(); // 打印向量
 };
 

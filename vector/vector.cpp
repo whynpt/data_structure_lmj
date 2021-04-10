@@ -1,7 +1,9 @@
 #include"vector.h"
 #include<iostream>
+using namespace std;
 typedef int Rank;
 
+//默认构造函数
 template<typename T>
 vector<T> ::vector(int c, Rank s, T v)
 {
@@ -10,6 +12,7 @@ vector<T> ::vector(int c, Rank s, T v)
 		//_elem[_size] = v;
 };
 
+//数组整体复制
 template<typename T>
 vector<T> ::vector(T const* A, Rank n)
 {
@@ -17,24 +20,28 @@ vector<T> ::vector(T const* A, Rank n)
 	copyFrom(A, 0, n);
 }
 
+//数组区间复制
 template<typename T>
 vector<T> ::vector(T const* A, Rank start, Rank end)
 {
 	copyFrom(A, start, end);
 }
 
+//向量整体复制
 template<typename T>
 vector<T> ::vector(vector<T> const& V)
 {
 	copyFrom(V._elem, 0, V._size);
 }
 
+//数组区间复制
 template<typename T>
 vector<T> ::vector(vector<T> const& V, Rank start, Rank end)
 {
 	copyFrom(V._elem, start, end);
 }
 
+//复制函数
 template<typename T>
 void vector<T>::copyFrom(T const* A, Rank start, Rank end)
 {
@@ -45,16 +52,19 @@ void vector<T>::copyFrom(T const* A, Rank start, Rank end)
 	}
 };
 
+//读取元素个数
 template<typename T>
 Rank vector<T>::size() const 
 { return _size; }
 
+//无序整体查找
 template<typename T>
 Rank vector<T>::find(T const e)
 {
 	return find(e, 0, size());
 }
 
+//无序区间查找
 template<typename T>
 Rank vector<T>::find(T const e, Rank start, Rank end)
 {
@@ -67,12 +77,14 @@ Rank vector<T>::find(T const e, Rank start, Rank end)
 	return -1;
 }
 
+//有序整体查找
 template<typename T>
 Rank vector<T>::search(T const e)
 {
 	search(e, 0, size());
 }
 
+//有序区间查找
 template<typename T>
 Rank vector<T>::search(T const e, Rank start, Rank end)
 {
@@ -87,12 +99,7 @@ Rank vector<T>::search(T const e, Rank start, Rank end)
 	return -1;
 }
 
-template<typename T>
-ostream vector<T>::operator << (vector<T> const& V)
-{
-	
-}
-
+//扩容
 template<typename T>
 void vector<T>::expand()
 {
@@ -106,6 +113,7 @@ void vector<T>::expand()
 
 }
 
+//缩容
 template<typename T>
 void vector<T>::shrink()
 {
@@ -132,24 +140,28 @@ void vector<T>::TooShort()
 		expand();
 }
 
+//重载[]
 template<typename T>
 T& vector<T>::operator[] (Rank r)
 {
 	return _elem[r];
 }
 
+//重载[]
 template<typename T>
 const T& vector<T>::operator[] (Rank r) const
 {
 	return _elem[r];
 }
 
+//重载=
 //template<typename T>
 //vector<T>& vector<T>::operator= (vector<T> const& V, Rank start, Rank end)
 //{
 //	//T* newelem = new T [_capaci;
 //}
 
+//区间删除
 template<typename T>
 int vector<T>::remove(Rank start, Rank end)
 {
@@ -161,13 +173,17 @@ int vector<T>::remove(Rank start, Rank end)
 	return _size;
 }
 
-
+//单个元素删除
 template<typename T>
 Rank vector<T>::remove(Rank r)
 {	
 	while ( r++ < _size)
 		_elem[r] = _elem[r + 1];
+	_size--;
+	return _size;
 }
+
+//指定位置插入
 template<typename T>
 Rank vector<T>::insert(T const& e, Rank r)
 {
@@ -180,6 +196,7 @@ Rank vector<T>::insert(T const& e, Rank r)
 	return ++_size;
 }
 
+//末尾插入
 template<typename T>
 Rank vector<T>::insert(T const& e)
 {
@@ -188,6 +205,7 @@ Rank vector<T>::insert(T const& e)
 
 }
 
+//无序去重
 template<typename T>
 int vector<T>::deduplicate()
 {
@@ -200,3 +218,35 @@ int vector<T>::deduplicate()
 		}
 	return _size;
 }
+
+template<typename T>
+int vector<T>::uniquify()
+{
+	int start = 0;
+	for (Rank r = 0; r < _size; r++)
+	{
+		if (_elem[r] != _elem[r + 1])
+		{
+			remove(start, r + 1);
+			start = r + 1;
+		}
+	}
+	return _size;
+}
+
+//打印向量
+template<typename T>
+void vector<T>::print()
+{	
+	Rank r = 0;
+	while(r++ < _size)
+	cout << _elem[r];
+}
+
+//打印向量
+//template<typename T>
+//ostream& vector<T>::operator<<(ostream& out, const vector<T>& V)
+//{
+//	for (Rank r = 0; r < _size; r++) out << V[r];
+//	return out;
+//};
