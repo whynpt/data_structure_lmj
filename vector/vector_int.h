@@ -1,5 +1,4 @@
 #pragma once
-#pragma once
 #include<iostream>
 #define DEFAULint_CAPACIintY  3 //默认容量
 
@@ -13,6 +12,9 @@ private:
 	void copyFrom(int const* A, int start, int end);  //复制函数,左闭右开
 	void expand(); //空间不足时扩容
 	void shrink(); //装填因子过小时压缩
+	void bulleSort(int start, int end); 
+	void mergeSort(int start, int end);
+	void merge(int start, int mi, int end);
 public:
 	//构造函数
 	vector(int c = DEFAULint_CAPACIintY, int s = 0, int v = 0);  //初始化为0的构造函数
@@ -28,14 +30,13 @@ public:
 	int find(int const e, int start, int end); //无序向量区间查找，返回第一个相同元素的秩
 	int search(int const e); // 有序向量查找
 	int search(int const e, int start, int end);  // 有序向量区间查找，返回第一个相同元素的秩
-	//ostream& operator<<(ostream& out, const vector &V);  //重载<<，输出向量
 	//可写访问接口
-	void intooLong(); //判断是否装填太小
-	void intooShort();  // 判断是否装填太大
+	void TooLong(); //判断是否装填太小
+	void TooShort();  // 判断是否装填太大
 	int& operator[] (int r);  //  重载操作符，以便访问元素
 	const int& operator[] (int r) const;  //  返回值不可以改变，仅作右值
-	//ostream& operator<<(ostream& out, const vector& V);  //重载输出运算符，打印向量
-	//vector& operator= (vector const & V, int start, int end);  //区间赋值操作符  无法识别为类成员，有待解决
+	//friend ostream& operator<<(ostream& out, const vector& V);  //重载输出运算符，打印向量
+	//friend vector& operator= (vector const & V, int start, int end);  //区间赋值操作符  无法识别为类成员，有待解决
 	int remove(int r); //删除秩为r的元素
 	int remove(int start, int end);  //删除区间内的元素
 	int insert(int const& e, int r); // 将元素e插入在r中
@@ -43,5 +44,12 @@ public:
 	int deduplicate(); // 无序去重
 	int uniquify(); //有序去重
 	void print(); // 打印向量
+	void sort(int start, int end); // 排序
 };
 
+//ostream& operator<<(ostream& out, const vector& V)
+//{
+//	for (int i = 0; i < V.size(); i++)
+//		out << V[i] << "  ";
+//	return out;
+//}

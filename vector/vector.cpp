@@ -238,6 +238,7 @@ int vector<T>::uniquify()
 template<typename T>
 void vector<T>::print()
 {	
+
 	Rank r = 0;
 	while(r++ < _size)
 	cout << _elem[r];

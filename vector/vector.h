@@ -25,7 +25,7 @@ public:
 	//只读接口
 	Rank size() const ; // 查找元素个数
 	Rank find(T const e); //无序向量查找
-	Rank find(T const e, Rank start, Rank end); //无序向量区间查找，返回第一个相同元素的秩
+	Rank find(T const e, Rank start, Rank end); //无序向量区间查找，返回第一个相同元素的秩 
 	Rank search(T const e); // 有序向量查找
 	Rank search(T const e, Rank start, Rank end);  // 有序向量区间查找，返回第一个相同元素的秩
 	//ostream& operator<<(ostream& out, const vector<T> &V);  //重载<<，输出向量
