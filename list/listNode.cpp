@@ -23,7 +23,7 @@ listNode* listNode::inserAsPred(int const& e)
 listNode* listNode::inserAsSucc(int const& e)
 {
 	listNode* newNode = new listNode(e, this, succ);
-	succ = newNode;
 	succ->pred = newNode;
+	succ = newNode;  //此两句顺序不可颠倒
 	return newNode;
 }
