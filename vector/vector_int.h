@@ -12,7 +12,7 @@ private:
 	void copyFrom(int const* A, int start, int end);  //复制函数,左闭右开
 	void expand(); //空间不足时扩容
 	void shrink(); //装填因子过小时压缩
-	void bulleSort(int start, int end); 
+	void bubbleSort(int start, int end); 
 	void mergeSort(int start, int end);
 	void merge(int start, int mi, int end);
 public:

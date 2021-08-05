@@ -270,13 +270,13 @@ void vector::sort(int start, int end)
 	switch (rand() % 2)
 	{	
 		case 1:mergeSort(start , end); break;
-		default:  bulleSort(start, end); break;
+		default:  bubbleSort(start, end); break;
 	}
 
 }
 
 //起泡排序
-void vector::bulleSort(int start, int end) //必须有两层循环，外层控制是否进行扫描，内层遍历进行扫描
+void vector::bubbleSort(int start, int end) //必须有两层循环，外层控制是否进行扫描，内层遍历进行扫描
 {
 	/*
 1 必须有两层循环，外层控制是否进行扫描，内层遍历进行扫描
