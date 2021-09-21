@@ -5,6 +5,8 @@
 #include"utils.h"
 using namespace std;
 
+// 实现v[start]到v[end]的排序
+
 
 void  bubbleSort(vector<int>& v, int start, int end) //必须有两层循环，外层控制是否进行扫描，内层遍历进行扫描
 {
@@ -199,10 +201,62 @@ void shellSort(vector<int>& v, int start, int end)
 	}
 }
 
+void down(vector<int>& v, int i, int start, int end) // 节点下滤
+{
+	int len = end - start + 1;
+	while (2 * i + 1 <= len - 1)  // 没有孩子节点
+	{
+		int left = 2 * i + 1, right = 2 * i + 2;
+		if (right > len - 1)  // 只有左孩子
+		{
+			if (v[i] < v[left])
+			{
+				swap(v[left], v[i]);				
+			}
+			return;  //交换完该返回
+		}
+		else  //  有两个孩子
+		{
+			if (v[left] <= v[i] && v[right] <= v[i])
+			{
+				return;
+			}
+			else if (v[i] < v[right] && v[left] <= v[right])  //right最大
+			{
+				swap(v[i], v[right]);
+				i = 2 * i + 2;
+			}
+			else if (v[i] < v[left] && v[right] < v[left])  //  left最大
+			{
+				swap(v[i], v[left]);
+				i = 2 * i + 1;
+			}
+		}
+	}
+
+}
+
+void  heapify(vector<int>& v, int start, int end)
+{
+	int len = end - start + 1;  //  注意
+	int i = ceil(len / 2) - 1;  // i = ceil(（len-1）/2) - 1能通过那么多？？？全部的i都比真实值小1
+	for (; i >= 0; i--)
+		down(v, i, start, end);
+}
+
 
 void heapSort(vector<int>& v, int start, int end)
 {
-
+	if (start == end )
+		return;
+	heapify(v, start, end);
+	if (!isHeap(v, start, end))
+	{
+		cout << "wrong heap" << endl;
+		return;
+	}
+	swap(v[start], v[end]);
+	heapSort(v, start, end - 1);
 }
 
 

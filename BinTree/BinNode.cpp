@@ -5,7 +5,6 @@ BinNode::BinNode()
 	parent = nullptr;
 	lc = nullptr;
 	rc = nullptr;
-	_height = 0;
 }
 
 BinNode::BinNode(int e, BinNode* parent, BinNode* lc, BinNode* rc, int h )
@@ -17,26 +16,24 @@ BinNode::BinNode(int e, BinNode* parent, BinNode* lc, BinNode* rc, int h )
 	h = 0;
 }
 
-//int BinNode::size()
+//int BinNode::size(BinNode* root)
 //{
-//	int size = 1;
-//	if (lc) size += lc->size();  //->改成.会报错：表达式必须包含类类型
-//	if (rc) size += rc->size();
-//	return size;
+//	if (!root) return 0;
+//	return size(root -> lc) + size(root -> rc) + 1;;
 //}
-
-BinNode* BinNode::inserAsLc(int const& e)  // 不必创建一个新节点，直接创建一个节点指针
-{
-	lc = new BinNode (e, this);
-	BinNode* prt = this;
-	return lc;
-}
-
-BinNode* BinNode::inserAsRc(int const& e)
-{
-	rc = new BinNode(e, this);
-	return rc;
-}
+//
+//BinNode* BinNode::inserAsLc(int const& e)  // 不必创建一个新节点，直接创建一个节点指针
+//{
+//	lc = new BinNode (e, this);
+//	BinNode* prt = this;
+//	return lc;
+//}
+//
+//BinNode* BinNode::inserAsRc(int const& e)
+//{
+//	rc = new BinNode(e, this);
+//	return rc;
+//}
 
 BinNode* BinNode::succ() // 仅限于中序遍历
 {

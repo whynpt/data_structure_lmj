@@ -21,3 +21,16 @@ bool isSorted(vector<int>& v, int start, int end)
 	}
 	return true;
 }
+
+bool isHeap(vector<int>& v, int start, int end)
+{
+	int len = end - start + 1;
+	int i = ceil((len - 1) / 2) - 1;
+	for (; i >= 0; i--)
+	{
+		int left = 2 * i + 1, right = 2 * i + 2;
+		if (v[i] < v[left] || v[i] < v[right])
+			return false;
+	}
+	return true;
+}
